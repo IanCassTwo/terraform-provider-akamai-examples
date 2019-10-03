@@ -3,6 +3,10 @@ provider "akamai" {
   papi_section = "papi"
 }
 
+variable "tdenabled" {
+	default = true
+}
+
 variable "activate" {
   default = true
 }
@@ -17,6 +21,9 @@ data "akamai_contract" "contract" {
 
 data "template_file" "property_json" {
    template = "${file("${path.module}/rules.json")}"
+   vars = {
+	tdenabled = "${var.tdenabled}"
+   }
 }
 
 resource "akamai_cp_code" "test-wheep-co-uk" {
