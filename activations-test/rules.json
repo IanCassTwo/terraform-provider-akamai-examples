@@ -1,325 +1,330 @@
 {
-    "accountId": "act_1-6JHGX",
-    "contractId": "ctr_1-1NC95D",
-    "groupId": "grp_91533",
-    "propertyName": "tf.wheep.co.uk",
-    "propertyVersion": 12,
-    "ruleFormat": "v2018-02-27",
-    "propertyId": "prp_556718",
-    "rules": {
-        "name": "default",
+  "accountId": "act_1-6JHGX",
+  "contractId": "ctr_1-1NC95D",
+  "groupId": "grp_91533",
+  "propertyId": "prp_572911",
+  "propertyVersion": 23,
+  "etag": "",
+  "rules": {
+    "name": "default",
+    "children": [
+      {
+        "name": "redirects",
         "children": [
-            {
-                "name": "redirects",
-                "children": [
-                    {
-                        "name": "http to https",
-                        "children": [],
-                        "behaviors": [
-                            {
-                                "name": "redirect",
-                                "options": {
-                                    "destinationHostname": "SAME_AS_REQUEST",
-                                    "destinationPath": "SAME_AS_REQUEST",
-                                    "destinationProtocol": "HTTPS",
-                                    "mobileDefaultChoice": "DEFAULT",
-                                    "queryString": "APPEND",
-                                    "responseCode": 301
-                                }
-                            }
-                        ],
-                        "criteria": [
-                            {
-                                "name": "requestProtocol",
-                                "options": {
-                                    "value": "HTTP"
-                                }
-                            }
-                        ],
-                        "criteriaMustSatisfy": "all"
-                    }
-                ],
-                "behaviors": [],
-                "criteria": [],
-                "criteriaMustSatisfy": "all"
-            },
-            {
-                "name": "Content Compression",
-                "children": [],
-                "behaviors": [
-                    {
-                        "name": "gzipResponse",
-                        "options": {
-                            "behavior": "ALWAYS"
-                        }
-                    }
-                ],
-                "criteria": [
-                    {
-                        "name": "contentType",
-                        "options": {
-                            "matchCaseSensitive": false,
-                            "matchOperator": "IS_ONE_OF",
-                            "matchWildcard": true,
-                            "values": [
-                                "text/*",
-                                "application/javascript",
-                                "application/x-javascript",
-                                "application/x-javascript*",
-                                "application/json",
-                                "application/x-json",
-                                "application/*+json",
-                                "application/*+xml",
-                                "application/text",
-                                "application/vnd.microsoft.icon",
-                                "application/vnd-ms-fontobject",
-                                "application/x-font-ttf",
-                                "application/x-font-opentype",
-                                "application/x-font-truetype",
-                                "application/xmlfont/eot",
-                                "application/xml",
-                                "font/opentype",
-                                "font/otf",
-                                "font/eot",
-                                "image/svg+xml",
-                                "image/vnd.microsoft.icon"
-                            ]
-                        }
-                    }
-                ],
-                "criteriaMustSatisfy": "all"
-            },
-            {
-                "name": "Static Content",
-                "children": [],
-                "behaviors": [
-                    {
-                        "name": "caching",
-                        "options": {
-                            "behavior": "MAX_AGE",
-                            "mustRevalidate": false,
-                            "ttl": "1d"
-                        }
-                    },
-                    {
-                        "name": "prefetch",
-                        "options": {
-                            "enabled": false
-                        }
-                    },
-                    {
-                        "name": "prefetchable",
-                        "options": {
-                            "enabled": true
-                        }
-                    }
-                ],
-                "criteria": [
-                    {
-                        "name": "fileExtension",
-                        "options": {
-                            "matchCaseSensitive": false,
-                            "matchOperator": "IS_ONE_OF",
-                            "values": [
-                                "aif",
-                                "aiff",
-                                "au",
-                                "avi",
-                                "bin",
-                                "bmp",
-                                "cab",
-                                "carb",
-                                "cct",
-                                "cdf",
-                                "class",
-                                "css",
-                                "doc",
-                                "dcr",
-                                "dtd",
-                                "exe",
-                                "flv",
-                                "gcf",
-                                "gff",
-                                "gif",
-                                "grv",
-                                "hdml",
-                                "hqx",
-                                "ico",
-                                "ini",
-                                "jpeg",
-                                "jpg",
-                                "js",
-                                "mov",
-                                "mp3",
-                                "nc",
-                                "pct",
-                                "pdf",
-                                "png",
-                                "ppc",
-                                "pws",
-                                "swa",
-                                "swf",
-                                "txt",
-                                "vbs",
-                                "w32",
-                                "wav",
-                                "wbmp",
-                                "wml",
-                                "wmlc",
-                                "wmls",
-                                "wmlsc",
-                                "xsd",
-                                "zip",
-                                "pict",
-                                "tif",
-                                "tiff",
-                                "mid",
-                                "midi",
-                                "ttf",
-                                "eot",
-                                "woff",
-                                "woff2",
-                                "otf",
-                                "svg",
-                                "svgz",
-                                "webp",
-                                "jxr",
-                                "jar",
-                                "jp2"
-                            ]
-                        }
-                    }
-                ],
-                "criteriaMustSatisfy": "all"
-            },
-            {
-                "name": "Dynamic Content",
-                "children": [],
-                "behaviors": [
-                    {
-                        "name": "downstreamCache",
-                        "options": {
-                            "behavior": "TUNNEL_ORIGIN"
-                        }
-                    }
-                ],
-                "criteria": [
-                    {
-                        "name": "cacheability",
-                        "options": {
-                            "matchOperator": "IS_NOT",
-                            "value": "CACHEABLE"
-                        }
-                    }
-                ],
-                "criteriaMustSatisfy": "all"
-            },
-            {
-                "name": "Performance",
-                "children": [],
-                "behaviors": [
-                    {
-                        "name": "http2",
-                        "options": {
-                            "enabled": true
-                        }
-                    },
-                    {
-                        "name": "allowTransferEncoding",
-                        "options": {
-                            "enabled": true
-                        }
-                    },
-                    {
-                        "name": "removeVary",
-                        "options": {
-                            "enabled": true
-                        }
-                    }
-                ],
-                "criteria": [],
-                "criteriaMustSatisfy": "all",
-                "comments": "Improves the performance of delivering objects to end users. Behaviors in this rule are applied to all requests as appropriate."
-            },
-            {
-                "name": "Test",
-                "children": [],
-                "behaviors": [
-                    {
-                        "name": "caching",
-                        "options": {
-                            "behavior": "BYPASS_CACHE"
-                        }
-                    }
-                ],
-                "criteria": [
-                    {
-                        "name": "path",
-                        "options": {
-                            "matchCaseSensitive": false,
-                            "matchOperator": "MATCHES_ONE_OF",
-                            "values": [
-                                "/wibble"
-                            ]
-                        }
-                    }
-                ],
-                "criteriaMustSatisfy": "all"
-            }
+          {
+            "name": "http to https",
+            "behaviors": [
+              {
+                "name": "redirect",
+                "options": {
+                  "destinationHostname": "SAME_AS_REQUEST",
+                  "destinationPath": "SAME_AS_REQUEST",
+                  "destinationProtocol": "HTTPS",
+                  "mobileDefaultChoice": "DEFAULT",
+                  "queryString": "APPEND",
+                  "responseCode": 301
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "requestProtocol",
+                "options": {
+                  "value": "HTTP"
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all",
+            "options": {}
+          }
         ],
+        "criteriaMustSatisfy": "all",
+        "options": {}
+      },
+      {
+        "name": "Content Compression",
         "behaviors": [
-            {
-                "name": "origin",
-                "options": {
-                    "cacheKeyHostname": "ORIGIN_HOSTNAME",
-                    "compress": false,
-                    "enableTrueClientIp": false,
-                    "forwardHostHeader": "ORIGIN_HOSTNAME",
-                    "hostname": "defender.wheep.co.uk",
-                    "httpPort": 80,
-                    "originType": "CUSTOMER",
-                    "originCertificate": "",
-                    "verificationMode": "PLATFORM_SETTINGS",
-                    "ports": "",
-                    "httpsPort": 443,
-                    "originSni": true
-                }
-            },
-            {
-                "name": "caching",
-                "options": {
-                    "behavior": "NO_STORE"
-                }
-            },
-            {
-                "name": "sureRoute",
-                "options": {
-                    "enabled": false,
-                    "srDownloadLinkTitle": ""
-                }
-            },
-            {
-                "name": "prefetch",
-                "options": {
-                    "enabled": true
-                }
-            },
-            {
-                "name": "allowPost",
-                "options": {
-                    "enabled": false
-                }
-            },
-            {
-                "name": "tieredDistribution",
-                "options": {
-                    "enabled": true
-                }
+          {
+            "name": "gzipResponse",
+            "options": {
+              "behavior": "ALWAYS"
             }
+          }
         ],
+        "criteria": [
+          {
+            "name": "contentType",
+            "options": {
+              "matchCaseSensitive": false,
+              "matchOperator": "IS_ONE_OF",
+              "matchWildcard": true,
+              "values": [
+                "text/*",
+                "application/javascript",
+                "application/x-javascript",
+                "application/x-javascript*",
+                "application/json",
+                "application/x-json",
+                "application/*+json",
+                "application/*+xml",
+                "application/text",
+                "application/vnd.microsoft.icon",
+                "application/vnd-ms-fontobject",
+                "application/x-font-ttf",
+                "application/x-font-opentype",
+                "application/x-font-truetype",
+                "application/xmlfont/eot",
+                "application/xml",
+                "font/opentype",
+                "font/otf",
+                "font/eot",
+                "image/svg+xml",
+                "image/vnd.microsoft.icon"
+              ]
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "options": {}
+      },
+      {
+        "name": "Static Content",
+        "behaviors": [
+          {
+            "name": "caching",
+            "options": {
+              "behavior": "MAX_AGE",
+              "mustRevalidate": false,
+              "ttl": "1d"
+            }
+          },
+          {
+            "name": "prefetch",
+            "options": {
+              "enabled": false
+            }
+          },
+          {
+            "name": "prefetchable",
+            "options": {
+              "enabled": true
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "fileExtension",
+            "options": {
+              "matchCaseSensitive": false,
+              "matchOperator": "IS_ONE_OF",
+              "values": [
+                "aif",
+                "aiff",
+                "au",
+                "avi",
+                "bin",
+                "bmp",
+                "cab",
+                "carb",
+                "cct",
+                "cdf",
+                "class",
+                "css",
+                "doc",
+                "dcr",
+                "dtd",
+                "exe",
+                "flv",
+                "gcf",
+                "gff",
+                "gif",
+                "grv",
+                "hdml",
+                "hqx",
+                "ico",
+                "ini",
+                "jpeg",
+                "jpg",
+                "js",
+                "mov",
+                "mp3",
+                "nc",
+                "pct",
+                "pdf",
+                "png",
+                "ppc",
+                "pws",
+                "swa",
+                "swf",
+                "txt",
+                "vbs",
+                "w32",
+                "wav",
+                "wbmp",
+                "wml",
+                "wmlc",
+                "wmls",
+                "wmlsc",
+                "xsd",
+                "zip",
+                "pict",
+                "tif",
+                "tiff",
+                "mid",
+                "midi",
+                "ttf",
+                "eot",
+                "woff",
+                "woff2",
+                "otf",
+                "svg",
+                "svgz",
+                "webp",
+                "jxr",
+                "jar",
+                "jp2"
+              ]
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "options": {}
+      },
+      {
+        "name": "Dynamic Content",
+        "behaviors": [
+          {
+            "name": "downstreamCache",
+            "options": {
+              "behavior": "TUNNEL_ORIGIN"
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "cacheability",
+            "options": {
+              "matchOperator": "IS_NOT",
+              "value": "CACHEABLE"
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "options": {}
+      },
+      {
+        "name": "Performance",
+        "behaviors": [
+          {
+            "name": "http2",
+            "options": {
+              "enabled": true
+            }
+          },
+          {
+            "name": "allowTransferEncoding",
+            "options": {
+              "enabled": true
+            }
+          },
+          {
+            "name": "removeVary",
+            "options": {
+              "enabled": true
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "options": {},
+        "comments": "Improves the performance of delivering objects to end users. Behaviors in this rule are applied to all requests as appropriate."
+      },
+      {
+        "name": "Test",
+        "behaviors": [
+          {
+            "name": "caching",
+            "options": {
+              "behavior": "BYPASS_CACHE"
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "path",
+            "options": {
+              "matchCaseSensitive": false,
+              "matchOperator": "MATCHES_ONE_OF",
+              "values": [
+                "/wibble"
+              ]
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all",
+        "options": {}
+      }
+    ],
+    "behaviors": [
+      {
+        "name": "origin",
         "options": {
-            "is_secure": true
-        },
-        "variables": []
+          "cacheKeyHostname": "ORIGIN_HOSTNAME",
+          "compress": false,
+          "enableTrueClientIp": false,
+          "forwardHostHeader": "ORIGIN_HOSTNAME",
+          "hostname": "defender.wheep.co.uk",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "originCertificate": "",
+          "originSni": true,
+          "originType": "CUSTOMER",
+          "ports": "",
+          "verificationMode": "PLATFORM_SETTINGS"
+        }
+      },
+      {
+        "name": "caching",
+        "options": {
+          "behavior": "NO_STORE"
+        }
+      },
+      {
+        "name": "sureRoute",
+        "options": {
+          "enabled": false,
+          "srDownloadLinkTitle": ""
+        }
+      },
+      {
+        "name": "prefetch",
+        "options": {
+          "enabled": true
+        }
+      },
+      {
+        "name": "allowPost",
+        "options": {
+          "enabled": false
+        }
+      },
+      {
+        "name": "tieredDistribution",
+        "options": {
+          "enabled": true
+        }
+      },
+      {
+        "name": "cpCode",
+        "options": {
+          "value": {
+            "id": 874909
+          }
+        }
+      }
+    ],
+    "options": {
+      "is_secure": true
     }
+  },
+  "ruleFormat": "v2018-02-27"
 }
