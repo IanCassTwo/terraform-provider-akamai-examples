@@ -44,7 +44,7 @@
       {
         "name": "tieredDistribution",
         "options": {
-          "enabled": true
+          "enabled": ${tdenabled}
         }
       },
       {

@@ -3,14 +3,6 @@ provider "akamai" {
   papi_section = "papi"
 }
 
-variable "tdenabled" {
-	default = false
-}
-
-variable "activate" {
-  default = true
-}
-
 data "akamai_group" "group" {
   name = "Ian Cass"
 }
@@ -19,16 +11,18 @@ data "akamai_contract" "contract" {
   group = "${data.akamai_group.group.name}"
 }
 
-resource "template_dir" "rules" {
-	source_dir = "${path.module}/rules"
-	destination_dir = "${path.module}/rendered"
+data "template_file" "rule_template" {
+	template = "${file("${path.module}/rules/rules.json")}"
 	vars = {
 		snippets = "${path.module}/rules/snippets"
 	}
 }
 
-data "local_file" "rules" {
-   filename = "${template_dir.rules.destination_dir}/rules.json"
+data "template_file" "rules" {
+	template = "${data.template_file.rule_template.rendered}"
+	vars = {
+		tdenabled = var.tdenabled
+	}
 }
 
 resource "akamai_cp_code" "test-wheep-co-uk" {
@@ -58,8 +52,17 @@ resource "akamai_property" "test-wheep-co-uk" {
 	"tfsnippets.wheep.co.uk" = "${akamai_edge_hostname.test-wheep-co-uk.edge_hostname}",
 	"testsnippets.wheep.co.uk" = "${akamai_edge_hostname.test-wheep-co-uk.edge_hostname}"
   }
-  rules = "${data.local_file.rules.content}"
+  rules       = "${data.template_file.rules.rendered}"
   is_secure = true
 
 }
 
+/*
+resource "akamai_property_activation" "test-wheep-co-uk" {
+        property = "${akamai_property.test-wheep-co-uk.id}"
+        version = "${akamai_property.test-wheep-co-uk.version}"
+        contact = ["icass@akamai.com"]
+        network = "STAGING"
+        activate = true
+}
+*/
