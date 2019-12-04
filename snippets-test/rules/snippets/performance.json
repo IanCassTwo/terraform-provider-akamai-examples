@@ -24,5 +24,4 @@
         "criteria": [],
         "criteriaMustSatisfy": "all",
         "comments": "Improves the performance of delivering objects to end users. Behaviors in this rule are applied to all requests as appropriate."
-      },
-
+      }

@@ -23,7 +23,7 @@ resource "template_dir" "rules" {
 	source_dir = "${path.module}/rules"
 	destination_dir = "${path.module}/rendered"
 	vars = {
-		fragments = "${path.module}/rules/snippets"
+		snippets = "${path.module}/rules/snippets"
 	}
 }
 

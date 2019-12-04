@@ -9,13 +9,13 @@
   "rules": {
     "name": "default",
     "children": [
-      ${file("${fragments}/snippets/compression.json")}
-      ${file("${fragments}/snippets/performance.json")}
-      ${file("${fragments}/snippets/static.json")}
-      ${file("${fragments}/snippets/dynamic.json")}
-      ${file("${fragments}/snippets/redirect.json")}
+      ${file("${snippets}/compression.json")},
+      ${file("${snippets}/performance.json")},
+      ${file("${snippets}/static.json")},
+      ${file("${snippets}/dynamic.json")},
+      ${file("${snippets}/redirect.json")}
     ],
-    ${file("${fragments}/default.json")}
+    ${file("${snippets}/default.json")}
     ],
     "options": {
       "is_secure": true
