@@ -1,6 +1,11 @@
 provider "akamai" {
-  edgerc = "/home/icass/.edgerc"
   papi_section = "papi"
+  property {
+      host = "${var.akamai_host}"
+      access_token = "${var.akamai_access_token}"
+      client_token = "${var.akamai_client_token}"
+      client_secret = "${var.akamai_client_secret}"
+  }
 }
 
 data "akamai_group" "group" {
@@ -57,12 +62,10 @@ resource "akamai_property" "test-wheep-co-uk" {
 
 }
 
-/*
 resource "akamai_property_activation" "test-wheep-co-uk" {
         property = "${akamai_property.test-wheep-co-uk.id}"
-        version = "${akamai_property.test-wheep-co-uk.version}"
         contact = ["icass@akamai.com"]
-        network = "STAGING"
+        network = "${upper(var.env)}"
         activate = true
 }
-*/
+

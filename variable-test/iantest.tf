@@ -58,7 +58,6 @@ resource "akamai_property" "test-wheep-co-uk" {
 
 resource "akamai_property_activation" "test-wheep-co-uk" {
         property = "${akamai_property.test-wheep-co-uk.id}"
-        version = "${akamai_property.test-wheep-co-uk.version}"
         contact = ["icass@akamai.com"]
         network = "${upper(var.env)}"
         activate = "${var.activate}"
