@@ -1,5 +1,5 @@
 provider "akamai" {
-  edgerc = "/home/icass/.edgerc"
+  edgerc = "~/.edgerc"
   papi_section = "papi"
 }
 
@@ -20,17 +20,19 @@ data "template_file" "rule_template" {
 }
 
 data "template_file" "rules" {
+	for_each = var.customers
+
 	template = data.template_file.rule_template.rendered
 	vars = {
 		tdenabled = var.tdenabled
-		username = var.username
-		password = var.password
+		username = each.value.username
+		password = each.value.password
 	}
 }
 
 resource "akamai_cp_code" "cpcode" {
 
-    for_each = var.hostnames
+    for_each = var.customers
 
     product  = "prd_Site_Accel"
     contract = data.akamai_contract.contract.id
@@ -39,17 +41,16 @@ resource "akamai_cp_code" "cpcode" {
 }
 
 resource "akamai_edge_hostname" "edge_hostname" {
-    for_each = var.hostnames
 
     product  = "prd_Site_Accel"
     contract = data.akamai_contract.contract.id
     group = data.akamai_group.group.id
-    edge_hostname = each.value
+    edge_hostname = "test.wheep.co.uk.edgesuite.net"
 }
 
 resource "akamai_property" "property" {
   
-  for_each = var.hostnames 
+  for_each = var.customers 
 
   name        = each.key
   cp_code     = akamai_cp_code.cpcode[each.key].id
@@ -60,15 +61,15 @@ resource "akamai_property" "property" {
   rule_format = "v2018-02-27"
 
   hostnames    = {
-	"${each.key}" = akamai_edge_hostname.edge_hostname[each.key].edge_hostname
+	"${each.key}" = akamai_edge_hostname.edge_hostname.edge_hostname
   }
-  rules       = data.template_file.rules.rendered
+  rules       = data.template_file.rules[each.key].rendered
   is_secure = true
 
 }
 
 resource "akamai_property_activation" "activation" {
-  for_each = var.hostnames 
+  for_each = var.customers 
 
   property = akamai_property.property[each.key].id
   contact = ["icass@akamai.com"]

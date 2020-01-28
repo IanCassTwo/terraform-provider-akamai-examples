@@ -14,7 +14,7 @@ variable "password" {
 	default = "test"
 }
 
-variable "hostnames" {
+variable "customers" {
 	type = map(object({
 		username = string
 		password = string
