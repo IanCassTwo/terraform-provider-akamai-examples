@@ -1,5 +1,7 @@
 variable "env" {
- default = "staging"
+}
+
+variable "network" {
 }
 
 variable "activate" {
