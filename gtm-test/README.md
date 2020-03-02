@@ -193,7 +193,7 @@ resource "akamai_gtm_property" "weighted-microapp" {
         akamai_gtm_datacenter.Dublin
     ]
 }
-` ``
+```
 Our variables are defined in a module level variables.tf
 
 ```
