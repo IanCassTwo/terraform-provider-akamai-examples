@@ -38,7 +38,7 @@ resource "akamai_property" "test-wheep-co-uk" {
  contract = data.akamai_contract.contract.id
  group = data.akamai_group.group.id
  product = "prd_Download_Delivery"
- rule_format = ""
+ rule_format = "latest"
  hostnames = {
   "${var.env}.wheep.co.uk" = akamai_edge_hostname.test-wheep-co-uk-edgesuite-net.edge_hostname
  }
