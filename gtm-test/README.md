@@ -6,7 +6,7 @@ GTM is a recent addition to Terraform so I thought I'd try it out with a real cu
 ## The Architecture
 The customer's microservices solution uses GTM for load balancing across 2 AWS regions in Frankfurt and Dublin, and provides failover between the two datacentres should one of them fail. There will be a GTM endpoint for each deployment instance (blue/green) and each microservice, in each datacentre. Initially, new end users will be load balanced but once they have a sticky cookie, they will be served direct from the datacentre failover property.
 
-![](./docs/9baddf88.jpg)
+![](./docs/9baddf88.svg)
 
 ## The Problem
 I think this is a pretty common model. It does, however, mean that we have lots of GTM properties to create - 2 weighted load balance properties (one each for blue and green) and 4 failover properties (one each for blue/green in each datacentre). We also have 4 origin DNS records but that's outside of the scope of this blog. All this is then multiplied by the number of microservices we have. It's not hard to see how the number of GTM entries could soon become unmanageable when doing this by hand.
